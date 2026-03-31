@@ -6,9 +6,8 @@ import {
   useCallback,
 } from "react";
 
-const BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ||
-  "http://localhost:9000";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") || null;
+const STORAGE_KEY = "worldwise-cities";
 
 const CitiesContext = createContext();
 
@@ -73,14 +72,19 @@ function CitiesProvider({ children }) {
       dispatch({ type: "loading" });
 
       try {
+        if (!BASE_URL) {
+          const localCities =
+            JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+          dispatch({ type: "cities/loaded", payload: localCities });
+          return;
+        }
+
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
         dispatch({ type: "cities/loaded", payload: data });
       } catch {
-        dispatch({
-          type: "rejected",
-          payload: "There was an error loading cities...",
-        });
+        const localCities = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        dispatch({ type: "cities/loaded", payload: localCities });
       }
     }
     fetchCities();
@@ -93,14 +97,22 @@ function CitiesProvider({ children }) {
       dispatch({ type: "loading" });
 
       try {
+        if (!BASE_URL) {
+          const localCities =
+            JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+          const city =
+            localCities.find((c) => String(c.id) === String(id)) || {};
+          dispatch({ type: "city/loaded", payload: city });
+          return;
+        }
+
         const res = await fetch(`${BASE_URL}/cities/${id}`);
         const data = await res.json();
         dispatch({ type: "city/loaded", payload: data });
       } catch {
-        dispatch({
-          type: "rejected",
-          payload: "There was an error loading the city...",
-        });
+        const localCities = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        const city = localCities.find((c) => String(c.id) === String(id)) || {};
+        dispatch({ type: "city/loaded", payload: city });
       }
     },
     [currentCity.id],
@@ -110,6 +122,15 @@ function CitiesProvider({ children }) {
     dispatch({ type: "loading" });
 
     try {
+      if (!BASE_URL) {
+        const localCity = { ...newCity, id: Date.now() };
+        const localCities = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        const nextCities = [...localCities, localCity];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(nextCities));
+        dispatch({ type: "city/created", payload: localCity });
+        return;
+      }
+
       const res = await fetch(`${BASE_URL}/cities`, {
         method: "POST",
         body: JSON.stringify(newCity),
@@ -121,10 +142,11 @@ function CitiesProvider({ children }) {
 
       dispatch({ type: "city/created", payload: data });
     } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was an error creating the city...",
-      });
+      const localCity = { ...newCity, id: Date.now() };
+      const localCities = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      const nextCities = [...localCities, localCity];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(nextCities));
+      dispatch({ type: "city/created", payload: localCity });
     }
   }
 
@@ -132,16 +154,24 @@ function CitiesProvider({ children }) {
     dispatch({ type: "loading" });
 
     try {
+      if (!BASE_URL) {
+        const localCities = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        const nextCities = localCities.filter((city) => city.id !== id);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(nextCities));
+        dispatch({ type: "city/deleted", payload: id });
+        return;
+      }
+
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: "DELETE",
       });
 
       dispatch({ type: "city/deleted", payload: id });
     } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was an error deleting the city...",
-      });
+      const localCities = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      const nextCities = localCities.filter((city) => city.id !== id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(nextCities));
+      dispatch({ type: "city/deleted", payload: id });
     }
   }
 
