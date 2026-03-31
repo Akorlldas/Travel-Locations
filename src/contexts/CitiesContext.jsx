@@ -6,7 +6,9 @@ import {
   useCallback,
 } from "react";
 
-const BASE_URL = "http://localhost:9000";
+const BASE_URL =
+  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ||
+  "http://localhost:9000";
 
 const CitiesContext = createContext();
 
@@ -63,7 +65,7 @@ function reducer(state, action) {
 function CitiesProvider({ children }) {
   const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
     reducer,
-    initialState
+    initialState,
   );
 
   useEffect(function () {
@@ -101,7 +103,7 @@ function CitiesProvider({ children }) {
         });
       }
     },
-    [currentCity.id]
+    [currentCity.id],
   );
 
   async function createCity(newCity) {
