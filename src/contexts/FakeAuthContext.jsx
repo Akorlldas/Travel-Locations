@@ -22,7 +22,7 @@ const FAKE_USER = {
   name: "NANA",
   email: "nana@example.com",
   password: "1234567890",
-  avatar: "../public/avatar.jpg",
+  avatar: "/avatar.jpg",
 };
 
 function AuthProvider({ children }) {
