@@ -8,7 +8,7 @@
   background-color: var(--color-dark--2);
   border-radius: 7px;
   padding: 1rem 2rem;
-  border-left: 5px solid var(--color-brand--2);
+  border-left: 5px solid #007f4a;
   cursor: pointer;
 
   color: inherit;
@@ -16,8 +16,8 @@
 }
 
 .cityItem--active {
-  border: 2px solid var(--color-brand--2);
-  border-left: 5px solid var(--color-brand--2);
+  border: 2px solid #007f4a;
+  border-left: 5px solid #007f4a;
 }
 
 .emoji {
@@ -29,10 +29,12 @@
   font-size: 1.7rem;
   font-weight: 600;
   margin-right: auto;
+  color: #e5dfd5;
 }
 
 .date {
   font-size: 1.5rem;
+  color: #e5dfd5;
 }
 
 .deleteBtn {
@@ -41,7 +43,7 @@
   border-radius: 50%;
   border: none;
   background-color: var(--color-dark--1);
-  color: var(--color-light--2);
+  color: #e5dfd5;
   font-size: 1.6rem;
   font-weight: 400;
   cursor: pointer;
@@ -49,6 +51,6 @@
 }
 
 .deleteBtn:hover {
-  background-color: var(--color-brand--1);
-  color: var(--color-dark--1);
+  background-color: #e5dfd5;
+  color: #007f4a;
 }

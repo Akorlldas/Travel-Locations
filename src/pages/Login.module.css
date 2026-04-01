@@ -24,3 +24,7 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.row label {
+  color: #e5dfd5;
+}

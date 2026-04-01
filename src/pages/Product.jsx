@@ -15,7 +15,7 @@ export default function Product() {
           <h2>关于 WorldWide</h2>
           <p>
             WorldWide 是一个基于 React + Leaflet
-            的旅行足迹记录应用，帮助用户在地图上标记、保存并回顾去过的城市。
+            的旅行足迹记录应用，帮助旅行者在地图上标记、保存并回顾去过的城市。
           </p>
           <p>
             WorldWise is an travel locations tracking application based on React
