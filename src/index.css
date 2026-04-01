@@ -4,9 +4,6 @@
 
 /* These CSS variables are global, so they are available in all CSS modules */
 :root {
-  --color-brand--1: #ffb545;
-  --color-brand--2: #00c46a;
-
   --color-dark--0: #242a2e;
   --color-dark--1: #2d3439;
   --color-dark--2: #42484d;
@@ -28,7 +25,7 @@ html {
 
 body {
   font-family: "Manrope", sans-serif;
-  color: var(--color-light--2);
+  color: #e5dfd5;
   font-weight: 400;
   line-height: 1.6;
 }
@@ -52,27 +49,18 @@ textarea {
 
 input:focus {
   outline: none;
-  background-color: #fff;
+  background-color: #e6e4e0;
 }
 
 .cta:link,
 .cta:visited {
   display: inline-block;
-  background-color: var(--color-brand--2);
-  color: var(--color-dark--1);
+  background-color: #007f4a;
+  color: #e5dfd5;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: 1000;
   padding: 1rem 3rem;
   border-radius: 5px;
 }
-
-/*
-"importCSSModule": {
-    "prefix": "csm",
-    "scope": "javascript,typescript,javascriptreact",
-    "body": ["import styles from './${TM_FILENAME_BASE}.module.css'"],
-    "description": "Import CSS Module as `styles`"
-  },
-*/
