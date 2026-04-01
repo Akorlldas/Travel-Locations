@@ -12,17 +12,15 @@ export default function Product() {
           alt="person with dog overlooking mountain with sunset"
         />
         <div>
-          <h2>About WorldWide.</h2>
+          <h2>关于 WorldWide</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
-            dicta illum vero culpa cum quaerat architecto sapiente eius non
-            soluta, molestiae nihil laborum, placeat debitis, laboriosam at fuga
-            perspiciatis?
+            WorldWide 是一个基于 React + Leaflet
+            的旅行足迹记录应用，帮助用户在地图上标记、保存并回顾去过的城市。
           </p>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            doloribus libero sunt expedita ratione iusto, magni, id sapiente
-            sequi officiis et.
+            WorldWise is an travel locations tracking application based on React
+            + Leaflet, helping you mark, save and retrospect the cities you have
+            been to.
           </p>
         </div>
       </section>

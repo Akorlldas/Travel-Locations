@@ -110,7 +110,7 @@ function Form() {
       </div>
 
       <div className={styles.row}>
-        <label htmlFor="date">When did you go to {cityName}?</label>
+        <label htmlFor="date">The date of your stay in {cityName}?</label>
 
         <DatePicker
           id="date"

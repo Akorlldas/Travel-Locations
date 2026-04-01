@@ -9,15 +9,15 @@ export default function Product() {
 
       <section>
         <div>
-          <h2>
-            Simple pricing.
-            <br />
-            Just $9/month.
-          </h2>
+          <h2>为了您的体验，我们推荐以下设置：</h2>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae vel
-            labore mollitia iusto. Recusandae quos provident, laboriosam fugit
-            voluptatem iste.
+            由于Windows电脑端浏览器通常不显示国旗图标，为了不影响您的使用体验，我们建议您在使用前给浏览器安装插件Country
+            Flag Fixer
+          </p>
+          <p>
+            Since Windows desktop browsers usually do not display the flag
+            icons, to ensure your experience is not affected, we recommend
+            installing the Country Flag Fixer plugin before using it.
           </p>
         </div>
         <img src="img-2.jpg" alt="overview of a large city with skyscrapers" />
