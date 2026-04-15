@@ -31,3 +31,17 @@
   color: #e5dfd5;
   margin-bottom: 2.5rem;
 }
+
+@media (max-width: 768px) {
+  .homepage {
+    padding: 2.5rem;
+  }
+
+  .homepage h1 {
+    font-size: 3rem;
+  }
+
+  .homepage h2 {
+    font-size: 1.8rem;
+  }
+}

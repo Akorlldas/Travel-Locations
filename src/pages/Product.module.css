@@ -29,6 +29,34 @@
   margin-bottom: 2rem;
 }
 
-.product section a {
-  margin-top: 2rem;
+@media (max-width: 768px) {
+  .product {
+    margin: none;
+    padding: 2.5rem;
+  }
+
+  .product section {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: none;
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+  }
+
+  .product img {
+    width: 80%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .product h2 {
+    font-size: 3rem;
+  }
+
+  .product p {
+    margin-bottom: none;
+    text-align: left;
+    text-indent: 3rem;
+  }
 }
