@@ -32,3 +32,15 @@
 .row input {
   background-color: #e6e4e0;
 }
+
+@media (max-width: 900px) {
+  .login {
+    margin: none;
+    padding: 2.5rem;
+  }
+
+  .form {
+    width: 100%;
+    margin: 4rem auto;
+  }
+}

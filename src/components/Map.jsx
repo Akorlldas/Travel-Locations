@@ -16,7 +16,7 @@ import { useGeolocation } from "../hooks/useGeolocation";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 import Button from "./Button";
 
-function Map() {
+function Map({ onToggleSidebar }) {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([24, 116]);
   const {
@@ -71,7 +71,7 @@ function Map() {
         ))}
 
         <ChangeCenter position={mapPosition} />
-        <DetectClick />
+        <DetectClick onToggleSidebar={onToggleSidebar} />
       </MapContainer>
     </div>
   );
@@ -83,11 +83,14 @@ function ChangeCenter({ position }) {
   return null;
 }
 
-function DetectClick() {
+function DetectClick({ onToggleSidebar }) {
   const navigate = useNavigate();
 
   useMapEvents({
-    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
+    click: (e) => {
+      onToggleSidebar(true);
+      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+    },
   });
 }
 

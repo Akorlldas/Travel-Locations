@@ -3,9 +3,9 @@ import AppNav from "./AppNav";
 import Logo from "./Logo";
 import styles from "./Sidebar.module.css";
 
-function Sidebar() {
+function Sidebar({ isOpen }) {
   return (
-    <div className={styles.sidebar}>
+    <div className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ""}`}>
       <Logo />
       <AppNav />
 

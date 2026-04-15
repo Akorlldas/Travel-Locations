@@ -29,7 +29,7 @@
   margin-bottom: 2rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .product {
     margin: none;
     padding: 2.5rem;
