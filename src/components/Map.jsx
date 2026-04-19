@@ -17,6 +17,7 @@ import { useUrlPosition } from "../hooks/useUrlPosition";
 import Button from "./Button";
 
 function Map({ onToggleSidebar }) {
+  const navigate = useNavigate();
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([24, 116]);
   const {
@@ -25,6 +26,11 @@ function Map({ onToggleSidebar }) {
     getPosition,
   } = useGeolocation();
   const [mapLat, mapLng] = useUrlPosition();
+
+  function handlePosition(lat, lng) {
+    onToggleSidebar(true);
+    navigate(`form?lat=${lat}&lng=${lng}`);
+  }
 
   useEffect(
     function () {
@@ -43,11 +49,9 @@ function Map({ onToggleSidebar }) {
 
   return (
     <div className={styles.mapContainer}>
-      {!geolocationPosition && (
-        <Button type="position" onClick={getPosition}>
-          {isLoadingPosition ? "Loading..." : "Use your position"}
-        </Button>
-      )}
+      <Button type="position" onClick={getPosition}>
+        {isLoadingPosition ? "Loading..." : "Use your position"}
+      </Button>
 
       <MapContainer
         center={mapPosition}
@@ -71,7 +75,10 @@ function Map({ onToggleSidebar }) {
         ))}
 
         <ChangeCenter position={mapPosition} />
-        <DetectClick onToggleSidebar={onToggleSidebar} />
+        <DetectClick
+          onToggleSidebar={onToggleSidebar}
+          onPosition={handlePosition}
+        />
       </MapContainer>
     </div>
   );
@@ -83,13 +90,10 @@ function ChangeCenter({ position }) {
   return null;
 }
 
-function DetectClick({ onToggleSidebar }) {
-  const navigate = useNavigate();
-
+function DetectClick({ onPosition }) {
   useMapEvents({
     click: (e) => {
-      onToggleSidebar(true);
-      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+      onPosition(e.latlng.lat, e.latlng.lng);
     },
   });
 }
